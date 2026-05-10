@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/julio-urquiza/SportConnect-Backend#readme",
+  "bugs": {
+    "url": "https://github.com/julio-urquiza/SportConnect-Backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julio-urquiza/SportConnect-Backend.git"
+  },
+  "license": "ISC",
+  "author": "grupo3",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
