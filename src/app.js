@@ -8,6 +8,6 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.get("/",()=> console.log('test'))
+app.get("/",(req,res)=> res.status(201).json({test:"ok"}))
 
 export default app

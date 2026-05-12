@@ -5,7 +5,7 @@ const connectDatabase = async () => {
 
   switch (db) {
     case 'mongoDB':
-      await connectDatabase();
+      await connectMongoDB();
       break;
 
     default:
