@@ -1,22 +1,15 @@
-import { registerUser } from "../services/user.service.js"
-import UsuarioDao from "../daos/mongoDB/usuario-dao.js"
+import userService from "../services/user.service.js"
+import wrapRoutes from "../utils/wrapRoutes.js"
 
-class UserController{
-    constructor(service){
-        this.service=service
+class UserController {
+    constructor(service) {
+        this.service = service
     }
-
 
     register = async (req, res) => {
-        try {
-            const user = await registerUser(req.body)
-            res.status(201).json({ message: "Usuario creado", user })
-        } catch (error) {
-            res.status(500),json({message: "Error al crear el usuario", error})
-        }
-               
+        const user = await this.service.registerUser(req.body)
+        res.status(201).json({ message: "user created successfully", user})
     }
-
 }
 
-export default new UserController(registerUser);
+export default wrapRoutes(new UserController(userService))
