@@ -4,58 +4,30 @@ export default class MongoDao {
     }
 
     getAll = async () => {
-        try {
-            return await this.model.find({})
-        } catch (error) {
-            throw new Error(error)
-        }
+        return await this.model.find({})
     }
 
     getById = async (id) => {
-        try {
-            return await this.model.findById(id)
-        } catch (error) {
-            throw new Error(error)
-        }
+        return await this.model.findById(id)
     }
 
     create = async (body) => {
-        try {
-            return await this.model.create(body)
-        } catch (error) {
-            throw new Error(error)
-        }
+        return await this.model.create(body)
     }
 
     update = async (id, body) => {
-        try {
-            return await this.model.findByIdAndUpdate(id, body, { new: true })
-        } catch (error) {
-            throw new Error(error)
-        }
+        return await this.model.findByIdAndUpdate(id, body, { new: true })
     }
 
     updateOne = async (params, body) => {
-        try {
-            return await this.model.findOneAndUpdate(params, body, { new: true })
-        } catch (error) {
-            throw new Error(error)
-        }
+        return await this.model.findOneAndUpdate(params, body, { new: true })
     }
 
     delete = async (id) => {
-        try {
-            return await this.model.findByIdAndDelete(id)
-        } catch (error) {
-            throw new Error(error)
-        }
+        return await this.model.findByIdAndDelete(id)
     }
 
     exists = async (param) => {
-        try {
-            return await this.model.exists(param)
-        } catch (error) {
-            throw new Error(error)
-        }
+        return await this.model.exists(param)
     }
 }  
