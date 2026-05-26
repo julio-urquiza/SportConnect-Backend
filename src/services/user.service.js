@@ -1,3 +1,4 @@
+import { body } from "express-validator"
 import usuarioDao from "../daos/mongoDB/usuario-dao.js"
 import { createHash } from "../utils/user-bcrypt.js"
 
@@ -11,6 +12,10 @@ class UserService {
         const hashedPassword = createHash(password)
         const retorno = await this.dao.create({nombre, apellido, email, password: hashedPassword, rol })
         return retorno
+    }
+
+    loginUser = async (body) => {
+        // const {email, password} = body
     }
 }    
 

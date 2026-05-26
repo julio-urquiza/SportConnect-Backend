@@ -1,14 +1,14 @@
 import mongoose from "mongoose"
 
 const UsuarioSchema = new mongoose.Schema({
-    nombre: {
+    name: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
-    apellido: {
+    surname: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
     email: {
@@ -23,7 +23,7 @@ const UsuarioSchema = new mongoose.Schema({
         required: true,
         minlength: 8
     },
-    rol: {
+    role: {
         type: String,
         enum: ["user", "owner"],
         required: true

@@ -2,11 +2,11 @@ import { body } from "express-validator"
 
 const registerValidation = [
     body("name")
-        .notEmpty().withMessage("El nombre es obligatorio")
+        // .notEmpty().withMessage("El nombre es obligatorio")
         .isLength({ min: 3 }),
 
-    body("name")
-        .notEmpty().withMessage("El apellido es obligatorio")
+    body("surname")
+        // .notEmpty().withMessage("El apellido es obligatorio")
         .isLength({ min: 3 }),
 
     body("email")
@@ -18,7 +18,7 @@ const registerValidation = [
         .notEmpty().withMessage("La contraseña es obligatorio")
         .isLength({ min: 8 }),
 
-    body("rol")
+    body("role")
         .notEmpty().withMessage("El rol es obligatorio")
         .isIn(["user", "owner"])
 ]
