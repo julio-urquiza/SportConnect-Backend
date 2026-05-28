@@ -1,6 +1,7 @@
 import { body } from "express-validator"
 import usuarioDao from "../daos/mongoDB/usuario-dao.js"
-import { createHash } from "../utils/user-bcrypt.js"
+import { createHash, isValidPassword } from "../utils/user-bcrypt.js"
+import CustomError from "../utils/customError.js"
 
 class UserService {
     constructor(dao){
@@ -15,8 +16,20 @@ class UserService {
     }
 
     loginUser = async (body) => {
-        // const {email, password} = body
+        const {email, password} = body
+        const usuario= await usuarioDao.getByEmail(email)
+
+        if(!usuario){
+                throw new CustomError("No se encontro un usuario que coincida con esas credenciales", 401)    
+        } else {
+            if(!isValidPassword(password, usuario.password)){
+                throw new CustomError("No se encontro un usuario que coincida con esas credenciales", 401)    
+         } else {
+                return usuario;
+         }
+        }
     }
+
 }    
 
 export default new UserService(usuarioDao)
