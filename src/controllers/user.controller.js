@@ -12,8 +12,10 @@ class UserController {
     }
 
     login = async (req, res) => {
-        // const token = await this.service.loginUser(req.body)
-        // res.status(201).json({ message: "user logged in successfully", token , user})
+        const credentials= (req.body)
+
+        const {user, token} = await service.loginUser(credentials)
+        res.status(200).json({message: "user logged in succesfully", token, user})
     }
 
     current = async (req, res) => {

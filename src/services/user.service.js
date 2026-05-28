@@ -18,14 +18,14 @@ class UserService {
     loginUser = async (body) => {
         const {email, password} = body
         const usuario= await usuarioDao.getByEmail(email)
-
+        const token=2
         if(!usuario){
                 throw new CustomError("No se encontro un usuario que coincida con esas credenciales", 401)    
         } else {
             if(!isValidPassword(password, usuario.password)){
                 throw new CustomError("No se encontro un usuario que coincida con esas credenciales", 401)    
          } else {
-                return usuario;
+                return {usuario, token};
          }
         }
     }
