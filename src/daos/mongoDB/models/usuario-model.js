@@ -3,12 +3,14 @@ import mongoose from "mongoose"
 const UsuarioSchema = new mongoose.Schema({
     name: {
         type: String,
-        // required: true,
         trim: true
     },
     surname: {
         type: String,
-        // required: true,
+        trim: true
+    },
+    avatarURL: {
+        type: String,
         trim: true
     },
     email: {
