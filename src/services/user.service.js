@@ -2,6 +2,7 @@ import { body } from "express-validator"
 import usuarioDao from "../daos/mongoDB/usuario-dao.js"
 import { createHash, isValidPassword } from "../utils/user-bcrypt.js"
 import CustomError from "../utils/customError.js"
+import { generateToken } from "../utils/jwt.js"
 
 class UserService {
     constructor(dao){
@@ -9,23 +10,24 @@ class UserService {
     }
 
     registerUser = async (body) => {
-        const {nombre, apellido, email, password, rol } = body
+        const { name, surname, email, password, role } = body
         const hashedPassword = createHash(password)
-        const retorno = await this.dao.create({nombre, apellido, email, password: hashedPassword, rol })
+        const retorno = await this.dao.create({ name, surname, email, password: hashedPassword, role })
         return retorno
     }
 
     loginUser = async (body) => {
         const {email, password} = body
-        const usuario= await usuarioDao.getByEmail(email)
-        const token=2
-        if(!usuario){
+        const user= await this.dao.getByEmail(email)
+        if(!user){
                 throw new CustomError("No se encontro un usuario que coincida con esas credenciales", 401)    
         } else {
-            if(!isValidPassword(password, usuario.password)){
+            if(!isValidPassword(password, user.password)){
                 throw new CustomError("No se encontro un usuario que coincida con esas credenciales", 401)    
          } else {
-                return {usuario, token};
+                const token= generateToken({_id:user._id, rol:user.role})
+                const { password, ...userSinPassword } = user.toObject()
+                return { user: userSinPassword, token }
          }
         }
     }

@@ -7,7 +7,7 @@ import validationMiddleware from "../middlewares/validationMiddleware.js"
 const router = Router()
 
 router.post("/register", registerValidation, validationMiddleware, userController.register)
-// router.post("/login", userController.login)
+router.post("/login", userController.login)
 // router.post("/current", userController.current)
 router.use(errorMiddleware)
 
