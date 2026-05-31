@@ -20,7 +20,7 @@ class UserService {
 
     loginUser = async (body) => {
         const { email, password } = body
-        const user = this.dao.getByEmail(email)
+        const user = await this.dao.getByEmail(email)
         if (!user) throw new CustomError(400, 'User not found')
         const valid = isValidPassword(password, user.password)
         if (!valid) throw new CustomError(400, 'Invalid password')
