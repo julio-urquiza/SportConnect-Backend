@@ -12,8 +12,14 @@ class UserController {
     }
 
     login = async (req, res) => {
-        // const token = await this.service.loginUser(req.body)
-        // res.status(201).json({ message: "user logged in successfully", token , user})
+        // Ejecutamos la lógica dura que ahora solo devuelve al usuario
+        const user = await this.service.loginUser(req.body)
+        
+        // Respondemos con éxito y los datos limpios (sin mostrar el password hasheado)
+        res.status(200).json({ 
+            message: "user logged in successfully", 
+            user: { email: user.email, role: user.role } 
+        })
     }
 
     current = async (req, res) => {
