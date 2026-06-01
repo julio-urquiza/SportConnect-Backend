@@ -23,8 +23,8 @@ class UserController {
     }
 
     current = async (req, res) => {
-        // const {user} = req
-        // res.status(201).json({ message: "token validated successfully", user })
+        const {user} = req
+        res.status(201).json({ message: "token validated successfully", user })
     }
 }
 
