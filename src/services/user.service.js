@@ -1,5 +1,5 @@
 import { body } from "express-validator"
-import usuarioDao from "../daos/mongoDB/usuario-dao.js"
+import usuarioDao from "../daos/mongoDB/usuario.dao.js"
 import { createHash, isValidPassword } from "../utils/user-bcrypt.js"
 import generateToken from "../utils/user-jwt.js"
 import CustomError from "../utils/customError.js"
