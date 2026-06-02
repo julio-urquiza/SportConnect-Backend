@@ -12,7 +12,7 @@ class CourtController {
 
         const canchas= await this.service.filtrarPorUbicacion(ubicacion)
         res.status(200).json({
-            mensaje:"Se encontraron canchas en esa ubicacion", canchas
+           canchas
         })
     }
     

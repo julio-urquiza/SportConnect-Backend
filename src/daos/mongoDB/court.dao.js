@@ -7,7 +7,7 @@ class CourtDao extends MongoDao {
     }
 
     async getByUbicacion(ubicacion){
-        return await this.model.find({ ubicacion: { $regex: ubicacion, $options: "i" } })
+        return await this.model.find({ ubicacion: { $regex: `^${ubicacion}$`, $options: "i" } })
     }
 
 
