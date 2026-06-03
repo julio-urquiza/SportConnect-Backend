@@ -7,13 +7,23 @@ class UserController {
     }
 
     register = async (req, res) => {
-        const user = await this.service.registerUser(req.body)
-        res.status(201).json({ ...user })
+        const data = await this.service.registerUser(req.body)
+        res.status(201).cookie("Token", data.token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict",
+            maxAge: 24 * 60 * 60 * 1000
+        }).json({ 'user': data.user })
     }
 
     login = async (req, res) => {
-        const user = await this.service.loginUser(req.body)
-        res.status(201).json({ ...user })
+        const data = await this.service.loginUser(req.body)
+        res.status(201).cookie("Token", data.token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict",
+            maxAge: 24 * 60 * 60 * 1000
+        }).json({ 'user': data.user })
     }
 
     current = async (req, res) => {
