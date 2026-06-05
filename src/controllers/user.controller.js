@@ -27,8 +27,9 @@ class UserController {
     }
 
     me = async (req, res) => {
-        // const {user} = req
-        // res.status(201).json({ message: "token validated successfully", user })
+        const {_id} = req.user
+        const user = await this.service.validateUser(_id)
+        res.status(201).json({ message: "token validated successfully", user })
     }
 
     logout = async (req, res) => {

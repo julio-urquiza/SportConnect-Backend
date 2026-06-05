@@ -27,6 +27,12 @@ class UserService {
         if (!valid) throw new CustomError(400, 'Invalid password')
         return {'user': new UserDTO(user), 'token': generateToken(user, process.env.CLAVE_JWT, 24) }
     }
+
+    validateUser = async (id) => {
+        const user = await this.dao.getById(id)
+        if (!user) throw new CustomError(400, 'User not found')
+        return new UserDTO(user)
+    }
 }
 
 export default new UserService(usuarioDao)
