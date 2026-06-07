@@ -5,6 +5,10 @@ class CourtController {
     constructor(service) {
         this.service = service;
     }
+    getCourts = async (req, res) => {
+        const courts = await this.service.getCourts()
+        res.status(200).json({ courts })
+    }
 
     filtrarPorUbicacion = async(req,res) =>{
         const ubicacion=req.query.ubicacion

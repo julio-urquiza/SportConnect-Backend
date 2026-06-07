@@ -5,6 +5,11 @@ class CourtService {
     constructor(dao) {
         this.dao = dao;
     }
+    getCourts = async () => {
+        const courts = await this.dao.getAll()
+        if (!courts) throw new CustomError(400, 'No se pudieron obtener las canchas')
+        return courts
+    }
 
     filtrarPorUbicacion= async(ubicacion) =>{
         if(!ubicacion || ubicacion.trim() == "") throw new CustomError(404, "No se recibio ninguna ubicacion")
