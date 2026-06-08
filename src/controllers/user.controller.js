@@ -10,8 +10,8 @@ class UserController {
         const data = await this.service.registerUser(req.body)
         res.status(201).cookie("Token", data.token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax",
+            secure: true,
+            sameSite: "none",
             maxAge: 24 * 60 * 60 * 1000
         }).json({ 'user': data.user })
     }
@@ -20,8 +20,8 @@ class UserController {
         const data = await this.service.loginUser(req.body)
         res.status(201).cookie("Token", data.token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax",
+            secure: true,
+            sameSite: "none",
             maxAge: 24 * 60 * 60 * 1000
         }).json({ 'user': data.user })
     }
@@ -36,8 +36,8 @@ class UserController {
         res.status(201)
             .clearCookie("Token", {
                 httpOnly: true,
-                secure: false,
-                sameSite: "lax"
+                secure: true,
+                sameSite: "none"
             })
             .json({ message: "Logged out successfully" })
     }
